@@ -1,0 +1,6 @@
+bug_id,description
+1,Login page crashes after entering password
+2,Submit button not working on registration page
+3,Application crashes after login
+4,Page loading slowly after search
+5,Error shown
