@@ -1,0 +1,5 @@
+Create a Streamlit application for bug triage.
+Classify bug severity.
+Detect duplicate bug reports.
+Generate clarification messages for incomplete reports.
+Analyze uploaded CSV file and generate bug report summary.
