@@ -48,3 +48,22 @@ streamlit run app.py
 
 - Classification is rule-based and depends on keywords.
 - Large datasets are not optimized for performance.
+
+
+  #TEAM NAME
+
+  Team - 12
+
+
+  #TEAM MEMBERS
+
+  -Degani Lakshmi Prasanna
+  -Gobbirigalla Shivalakshmi
+  -Dudekula Juveriya
+  -Sounu Vani
+
+
+  #DEMO_VEDIO_LINK
+
+  Demo vedio
+  
