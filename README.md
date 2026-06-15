@@ -50,20 +50,24 @@ streamlit run app.py
 - Large datasets are not optimized for performance.
 
 
-  #TEAM NAME
-
-  Team - 12
 
 
-  #TEAM MEMBERS
+#TEAM NAME
 
-  -Degani Lakshmi Prasanna
-  -Gobbirigalla Shivalakshmi
-  -Dudekula Juveriya
-  -Sounu Vani
+-Team - 12 (QA-04)
 
 
-  #DEMO_VEDIO_LINK
 
-  Demo vedio
+#TEAM MEMBERS
+
+-Degani Lakshmi Prasanna
+-Gobbirigalla Shivalakshmi
+-Dudekula Juveriya
+ -Sounu Vani
+
+
+
+#DEMO_VEDIO_LINK
+
+-Demo vedio
   
