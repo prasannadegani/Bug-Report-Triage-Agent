@@ -62,6 +62,22 @@ streamlit run app.py
 7. Download results as CSV
 
 
+##PROJECT ARCHITECTURE
+
+User Input
+    ↓
+Bug Report Dataset (CSV)
+    ↓
+Data Processing
+    ↓
+AI Classification Logic
+    ↓
+Priority Assignment
+    ↓
+Visualization Dashboard
+    ↓
+Output to User
+
 ## Project Structure
 
 - app.py                 → Main Streamlit application
