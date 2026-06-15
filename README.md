@@ -64,6 +64,9 @@ streamlit run app.py
 
 ## Project Architecture
 
+
+
+
 User Input
     ↓
 Bug Report Dataset (CSV)
@@ -77,6 +80,8 @@ Priority Assignment
 Visualization Dashboard
     ↓
 Output to User
+
+
 
 ## Project Structure
 
