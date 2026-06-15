@@ -1,9 +1,9 @@
-#BUG-REPORT-TRIAGE-AGENT
+## BUG-REPORT-TRIAGE-AGENT
 
 Bug Report Triage Agent built using Python and Streamlit that automatically analyzes bug reports, classifies severity, identifies affected areas, detects possible duplicates, and provides clarification suggestions for faster bug triage.
 
 
-#Overview
+## Overview
 
 This application analyzes bug reports and automatically performs:
 
@@ -13,14 +13,14 @@ This application analyzes bug reports and automatically performs:
 - Clarification Suggestions
 
 
-#Technologies Used
+## Technologies Used
 
 - Python
 - Streamlit
 - Pandas
 
 
-#Installation
+## Installation
 
 pip install -r requirements.txt
 
@@ -29,7 +29,7 @@ Run Application
 streamlit run app.py
 
 
-#Features
+## Features
 
 1. Upload bug reports in CSV format
 2. Classify bug severity (Critical, High, Medium, Low)
@@ -39,7 +39,7 @@ streamlit run app.py
 6. Download analysis results as CSV
 
 
-#Assumptions
+## Assumptions
 
 - Keyword-based classification is used.
 - Input CSV must contain a "description" column.
@@ -51,27 +51,47 @@ streamlit run app.py
 - Large datasets are not optimized for performance.
 
 
+## Project Workflow
 
-# COLLEGE NAME
+1. Upload bug report CSV file
+2. Analyze bug descriptions
+3. Classify severity level
+4. Identify affected area
+5. Detect duplicate reports
+6. Generate clarification suggestions
+7. Download results as CSV
+
+
+## Project Structure
+
+- app.py                 → Main Streamlit application
+- bug_reports.csv        → Sample bug report dataset
+- screenshots/           → Input and output screenshots
+- sample_data/           → Sample input and output files
+- Resume/                → Team member resumes
+- requirements.txt       → Required Python libraries
+
+
+## COLLEGE NAME
 
 -ASHOKA WOMENS ENGINEERING COLLEGE
 
 -KURNOOL
+
 -ANDHRA PRADESH
 
-# PROBLEM TITLE
+
+## PROBLEM TITLE
 
 BUG REPORT TRIAGE AGENT (QA-04)
 
-# TEAM NAME
+## TEAM NAME
 
 Team - 12
 
 
 
-
-
-# TEAM MEMBERS
+## TEAM MEMBERS
 
 1. Degani Lakshmi Prasanna
 
@@ -80,14 +100,18 @@ Team - 12
 3. Dudekula Juveriya
 
 4. Sounu Vani
-
    
 
+
+## RESUMES
+
+All team member resumes are available in the Resume folder.
 
 
 # DEMO VIDEO LINK
 
 https://www.loom.com/share/a91d2fbfdcc84dcbae82d03c59cee7d4
+
 
 
 
