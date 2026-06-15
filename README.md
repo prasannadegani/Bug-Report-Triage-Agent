@@ -70,16 +70,6 @@ streamlit run app.py
 6. Download analysis results as CSV
 
 
-## Assumptions
-
-- Keyword-based classification is used.
-- Input CSV must contain a "description" column.
-
-
-## Limitations
-
-- Classification is rule-based and depends on keywords.
-- Large datasets are not optimized for performance.
 
 
 
@@ -155,6 +145,18 @@ Output to User
 
 
 
+
+
+## Assumptions
+
+- Keyword-based classification is used.
+- Input CSV must contain a "description" column.
+
+
+## Limitations
+
+- Classification is rule-based and depends on keywords.
+- Large datasets are not optimized for performance.
 
 
 
