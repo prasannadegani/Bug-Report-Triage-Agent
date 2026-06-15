@@ -58,12 +58,15 @@ streamlit run app.py
 
 
 
-#TEAM MEMBERS
+# TEAM MEMBERS
 
-1.Degani Lakshmi Prasanna
-2.Gobbirigalla Shivalakshmi
-3.Dudekula Juveriya
-4.Sounu Vani
+1. Degani Lakshmi Prasanna
+
+2. Gobbirigalla Shivalakshmi
+
+3. Dudekula Juveriya
+
+4. Sounu Vani
 
 
 
