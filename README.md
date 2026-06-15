@@ -67,6 +67,9 @@ streamlit run app.py
 
 
 
+
+
+```text
 User Input
     ↓
 Bug Report Dataset (CSV)
@@ -80,6 +83,8 @@ Priority Assignment
 Visualization Dashboard
     ↓
 Output to User
+```
+
 
 
 
