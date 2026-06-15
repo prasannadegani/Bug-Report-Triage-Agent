@@ -29,6 +29,37 @@ Run Application
 streamlit run app.py
 
 
+
+## Technology Stack
+
+### Frontend
+
+* Streamlit
+
+### Backend
+
+* Python
+
+### Data Processing
+
+* Pandas
+
+### Data Source
+
+* CSV Files
+
+### Visualization
+
+* Plotly Express
+
+### AI Components
+
+* Rule-Based Bug Classification
+* Severity Prioritization
+* Duplicate Bug Detection
+
+
+
 ## Features
 
 1. Upload bug reports in CSV format
@@ -121,6 +152,11 @@ Output to User
 - sample_data/           → Sample input and output files
 - Resume/                → Team member resumes
 - requirements.txt       → Required Python libraries
+
+
+
+
+
 
 
 ## COLLEGE NAME
