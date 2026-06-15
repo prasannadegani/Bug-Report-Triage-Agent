@@ -54,20 +54,20 @@ streamlit run app.py
 
 #TEAM NAME
 
--Team - 12 (QA-04)
+•Team - 12 (QA-04)
 
 
 
 #TEAM MEMBERS
 
--Degani Lakshmi Prasanna
--Gobbirigalla Shivalakshmi
--Dudekula Juveriya
- -Sounu Vani
+1.Degani Lakshmi Prasanna
+2.Gobbirigalla Shivalakshmi
+3.Dudekula Juveriya
+4.Sounu Vani
 
 
 
 #DEMO_VEDIO_LINK
 
--Demo vedio
+•Demo vedio
   
