@@ -1,12 +1,12 @@
 COLLEGE NAME
--ASHOKA WOMENS ENGINEERING COLLEGE
+-Ashoka Women's Engineering College
 
--KURNOOL
+-Kurnool
 
--ANDHRA PRADESH
+-Andhra Pradesh
 
 PROBLEM TITLE
-BUG REPORT TRIAGE AGENT (QA-04)
+Bug Rerort Triage Agent (QA-04)
 
 TEAM NAME
 Team - 12
