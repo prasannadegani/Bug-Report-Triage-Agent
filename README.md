@@ -52,9 +52,32 @@ streamlit run app.py
 
 
 
+#College Name
+
+ASHOKA WOMENS ENGINEERING COLLEGE
+
+KURNOOL
+
+
+
+#PROBLEM TITLE
+
+BUG REPORT TRIAGE AGENT - (QA-04)
+
+
 #TEAM NAME
 
-•Team - 12 (QA-04)
+Team - 12 
+
+
+
+# DEMO VIDEO LINK
+
+
+
+#TEAM NAME
+
+•Team - 12 
 
 
 
