@@ -45,7 +45,7 @@ streamlit run app.py
 - Input CSV must contain a "description" column.
 
 
-#Limitations
+## Limitations
 
 - Classification is rule-based and depends on keywords.
 - Large datasets are not optimized for performance.
