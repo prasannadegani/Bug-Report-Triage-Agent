@@ -1,4 +1,4 @@
-# Bug-Report-Triage-Agent
+#BUG-REPORT-TRIAGE-AGENT
 Bug Report Triage Agent built using Python and Streamlit that automatically analyzes bug reports, classifies severity, identifies affected areas, detects possible duplicates, and provides clarification suggestions for faster bug triage.
 
 
@@ -73,10 +73,7 @@ Team - 12
 # DEMO VIDEO LINK
 
 
-
-#TEAM NAME
-
-•Team - 12 
+https://www.loom.com/share/a91d2fbfdcc84dcbae82d03c59cee7d4
 
 
 
