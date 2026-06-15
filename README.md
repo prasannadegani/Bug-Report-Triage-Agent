@@ -162,12 +162,20 @@ Output to User
 
 - Keyword-based classification is used.
 - Input CSV must contain a "description" column.
+- Bug descriptions are written in English.
+- Uploaded data is assumed to be valid and properly formatted.
+
+
+
 
 
 ## Limitations
 
-- Classification is rule-based and depends on keywords.
+- Classification is rule-based and depends on predefined keywords.
+- Accuracy may decrease for ambiguous bug descriptions.
 - Large datasets are not optimized for performance.
+- Does not integrate with external bug tracking tools such as Jira.
+
 
 
 
