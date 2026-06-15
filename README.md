@@ -18,6 +18,7 @@ This application analyzes bug reports and automatically performs:
 - Python
 - Streamlit
 - Pandas
+- Plotly
 
 
 ## Installation
