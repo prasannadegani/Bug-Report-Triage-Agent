@@ -51,6 +51,60 @@ streamlit run app.py
 - Large datasets are not optimized for performance.
 
 
+
+## How It Works
+
+```text
+          ┌─────────────────┐
+          │   Upload CSV    │
+          │  Bug Reports    │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Read Bug Data   │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Analyze Bug     │
+          │ Descriptions    │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Classify        │
+          │ Severity Level  │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Identify        │
+          │ Affected Area   │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Detect          │
+          │ Duplicate Bugs  │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Generate        │
+          │ Suggestions     │
+          └────────┬────────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │ Display Results │
+          │ & Download CSV  │
+          └─────────────────┘
+```
+
+
+
+
 ## Project Workflow
 
 1. Upload bug report CSV file
