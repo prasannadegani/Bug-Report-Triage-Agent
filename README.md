@@ -62,7 +62,7 @@ streamlit run app.py
 7. Download results as CSV
 
 
-## PROJECT ARCHITECTURE
+## Project Architecture
 
 User Input
     ↓
