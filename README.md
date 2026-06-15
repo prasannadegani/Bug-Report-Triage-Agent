@@ -52,54 +52,25 @@ streamlit run app.py
 
 
 
-## How It Works
+
+  ## How It Works
 
 ```text
-          ┌─────────────────┐
-          │   Upload CSV    │
-          │  Bug Reports    │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Read Bug Data   │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Analyze Bug     │
-          │ Descriptions    │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Classify        │
-          │ Severity Level  │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Identify        │
-          │ Affected Area   │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Detect          │
-          │ Duplicate Bugs  │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Generate        │
-          │ Suggestions     │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │ Display Results │
-          │ & Download CSV  │
-          └─────────────────┘
+Upload CSV
+    ↓
+Analyze Bug Reports
+    ↓
+Classify Severity
+    ↓
+Identify Affected Area
+    ↓
+Detect Duplicates
+    ↓
+Generate Suggestions
+    ↓
+Display Results
+    ↓
+Download CSV
 ```
 
 
