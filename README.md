@@ -197,6 +197,12 @@ https://github.com/prasannadegani/Bug-Report-Triage-Agent/tree/main/sample_data
 
 
 
+## Presentation link
+
+
+
+https://docs.google.com/presentation/d/10dHXnH7T3RiAUsIpDK0wrNgBIwY2YQX3/edit?usp=drivesdk&ouid=108486701550003423747&rtpof=true&sd=true
+
 
 
 
