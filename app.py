@@ -711,7 +711,3 @@ else:
     st.info(
         "👆 Upload a CSV file to start bug analysis."
     )
-
-
-
-Ee configuration valla Streamlit deployment default dark theme use cheyyakunda light theme use chestundi.
