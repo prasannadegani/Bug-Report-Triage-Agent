@@ -456,8 +456,9 @@ if uploaded_file is not None:
                 uploaded_table,
                 hide_index=True,
                 use_container_width=True,
-                height=500
-            )
+                height=500,
+                theme="light"
+                )
 
             if st.button(
                 "🔍 Analyze Bug Reports",
