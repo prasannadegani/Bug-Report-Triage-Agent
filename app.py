@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import pandas as pd
 from difflib import SequenceMatcher
@@ -712,17 +711,7 @@ else:
     st.info(
         "👆 Upload a CSV file to start bug analysis."
     )
-```
 
-**Important – GitHub deployment kosam:** `.streamlit/config.toml` file kuda create cheyyi. Andulo ee settings pettu:
 
-```toml
-[theme]
-base = "light"
-primaryColor = "#7B2CBF"
-backgroundColor = "#F8FBFF"
-secondaryBackgroundColor = "#FFFFFF"
-textColor = "#243447"
-```
 
 Ee configuration valla Streamlit deployment default dark theme use cheyyakunda light theme use chestundi.
