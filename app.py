@@ -2,17 +2,20 @@ import streamlit as st
 import pandas as pd
 from difflib import SequenceMatcher
 import plotly.express as px
+
 st.set_page_config(
     page_title="Bug Report Triage Agent",
     page_icon="🐞",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
 st.markdown(
     """
     <style>
 
-    /* Main background */
+    /* MAIN BACKGROUND */
+
     .stApp {
         background: linear-gradient(
             135deg,
@@ -21,14 +24,14 @@ st.markdown(
         );
     }
 
-    /* Main page width */
     .block-container {
         max-width: 1450px;
         padding-top: 2rem;
         padding-bottom: 3rem;
     }
 
-    /* Headings */
+    /* HEADINGS */
+
     h1 {
         color: #163A63 !important;
         font-weight: 750 !important;
@@ -43,10 +46,7 @@ st.markdown(
         color: #334155 !important;
     }
 
-
-    /* =================================================
-       FILE UPLOADER
-       ================================================= */
+    /* FILE UPLOADER */
 
     [data-testid="stFileUploader"] {
         background: white !important;
@@ -67,19 +67,16 @@ st.markdown(
     }
 
     [data-testid="stFileUploaderDropzone"] button {
-        background: #2563A6 !important;
+        background: #7B2CBF !important;
         color: white !important;
         border: none !important;
         border-radius: 8px !important;
     }
 
-
-    /* =================================================
-       BUTTONS
-       ================================================= */
+    /* BUTTONS */
 
     .stButton > button {
-        background: #2563A6 !important;
+        background: #7B2CBF !important;
         color: white !important;
         border: none !important;
         border-radius: 9px !important;
@@ -87,23 +84,44 @@ st.markdown(
         font-weight: 600 !important;
     }
 
+    /* BUTTON TEXT WHITE */
+
+    .stButton > button p {
+        color: white !important;
+    }
+
+    .stButton > button span {
+        color: white !important;
+    }
+
+    .stButton > button div {
+        color: white !important;
+    }
+
     .stButton > button:hover {
-        background: #174A84 !important;
+        background: #5A189A !important;
         color: white !important;
     }
 
     .stDownloadButton > button {
-        background: #2563A6 !important;
+        background: #7B2CBF !important;
         color: white !important;
         border: none !important;
         border-radius: 9px !important;
         font-weight: 600 !important;
     }
 
+    .stDownloadButton > button p,
+    .stDownloadButton > button span {
+        color: white !important;
+    }
 
-    /* =================================================
-       DATAFRAME
-       ================================================= */
+    .stDownloadButton > button:hover {
+        background: #5A189A !important;
+        color: white !important;
+    }
+
+    /* DATAFRAME */
 
     [data-testid="stDataFrame"] {
         background: white !important;
@@ -121,10 +139,7 @@ st.markdown(
         border-radius: 10px;
     }
 
-
-    /* =================================================
-       SMALL SUMMARY CARDS
-       ================================================= */
+    /* SUMMARY CARDS */
 
     .summary-card {
         padding: 14px 10px;
@@ -150,70 +165,35 @@ st.markdown(
         margin: 0 !important;
     }
 
-
-    /* Total - Cyan/Blue */
     .total-card {
-        background: linear-gradient(
-            135deg,
-            #2196F3,
-            #00BCD4
-        ) !important;
+        background: linear-gradient(135deg, #2196F3, #00BCD4) !important;
     }
 
-
-    /* Critical - Red */
     .critical-card {
-        background: linear-gradient(
-            135deg,
-            #E53935,
-            #FF5252
-        ) !important;
+        background: linear-gradient(135deg, #E53935, #FF5252) !important;
     }
 
-
-    /* High - Orange */
     .high-card {
-        background: linear-gradient(
-            135deg,
-            #FB8C00,
-            #FFCA28
-        ) !important;
+        background: linear-gradient(135deg, #FB8C00, #FFCA28) !important;
     }
 
-
-    /* Medium - Blue */
     .medium-card {
-        background: linear-gradient(
-            135deg,
-            #1565C0,
-            #42A5F5
-        ) !important;
+        background: linear-gradient(135deg, #1565C0, #42A5F5) !important;
     }
 
-
-    /* Low - Green */
     .low-card {
-        background: linear-gradient(
-            135deg,
-            #2E7D32,
-            #66BB6A
-        ) !important;
+        background: linear-gradient(135deg, #2E7D32, #66BB6A) !important;
     }
 
-
-    /* Duplicate - Purple */
     .duplicate-card {
-        background: linear-gradient(
-            135deg,
-            #7B1FA2,
-            #AB47BC
-        ) !important;
+        background: linear-gradient(135deg, #7B1FA2, #AB47BC) !important;
     }
 
     </style>
     """,
     unsafe_allow_html=True
 )
+
 st.title("🐞 Bug Report Triage Agent")
 
 st.write(
@@ -222,36 +202,26 @@ st.write(
 )
 
 st.divider()
+
+
+# SEVERITY CLASSIFICATION
+
 def classify_severity(description):
 
     text = str(description).lower()
 
     critical_keywords = [
-        "crash",
-        "crashes",
-        "system down",
-        "data loss",
-        "not starting",
-        "freeze",
-        "freezes"
+        "crash", "crashes", "system down",
+        "data loss", "not starting", "freeze", "freezes"
     ]
 
     high_keywords = [
-        "error",
-        "failed",
-        "fails",
-        "cannot",
-        "unable",
-        "broken",
-        "not working"
+        "error", "failed", "fails",
+        "cannot", "unable", "broken", "not working"
     ]
 
     medium_keywords = [
-        "slow",
-        "slowly",
-        "delay",
-        "performance",
-        "lag"
+        "slow", "slowly", "delay", "performance", "lag"
     ]
 
     if any(word in text for word in critical_keywords):
@@ -265,97 +235,72 @@ def classify_severity(description):
 
     else:
         return "Low"
+
+
+# AREA CLASSIFICATION
+
 def classify_area(description):
 
     text = str(description).lower()
 
-    if any(
-        word in text
-        for word in [
-            "login",
-            "password",
-            "authentication",
-            "signin",
-            "session"
-        ]
-    ):
+    if any(word in text for word in [
+        "login", "password", "authentication", "signin", "session"
+    ]):
         return "Authentication"
 
-    elif any(
-        word in text
-        for word in [
-            "button",
-            "screen",
-            "page",
-            "layout",
-            "ui",
-            "display"
-        ]
-    ):
+    elif any(word in text for word in [
+        "button", "screen", "page", "layout", "ui", "display"
+    ]):
         return "User Interface"
 
-    elif any(
-        word in text
-        for word in [
-            "slow",
-            "delay",
-            "performance",
-            "loading",
-            "lag"
-        ]
-    ):
+    elif any(word in text for word in [
+        "slow", "delay", "performance", "loading", "lag"
+    ]):
         return "Performance"
 
-    elif any(
-        word in text
-        for word in [
-            "database",
-            "data",
-            "server",
-            "record"
-        ]
-    ):
+    elif any(word in text for word in [
+        "database", "data", "server", "record"
+    ]):
         return "Backend"
 
-    elif any(
-        word in text
-        for word in [
-            "upload",
-            "file"
-        ]
-    ):
+    elif any(word in text for word in [
+        "upload", "file"
+    ]):
         return "File Management"
 
     else:
         return "General"
+
+
+# CLARIFICATION SUGGESTION
+
 def clarification(description):
 
     text = str(description)
 
-    word_count = len(
-        text.split()
-    )
+    word_count = len(text.split())
 
     if word_count < 5:
-
         return (
             "More information required. "
             "Add steps to reproduce and expected behavior."
         )
 
     elif word_count < 8:
-
         return (
             "Consider adding environment details "
             "and steps to reproduce."
         )
 
     else:
-
         return (
             "Bug report contains sufficient "
             "basic information."
         )
+
+
+# SIMILARITY CHECK
+
 def similarity(text1, text2):
 
     return SequenceMatcher(
@@ -363,6 +308,10 @@ def similarity(text1, text2):
         str(text1).lower().strip(),
         str(text2).lower().strip()
     ).ratio()
+
+
+# DUPLICATE DETECTION
+
 def detect_duplicates(descriptions):
 
     results = []
@@ -379,86 +328,74 @@ def detect_duplicates(descriptions):
             )
 
             if score >= 0.70:
-
-                duplicate = (
-                    f"Possible Duplicate of Bug {j + 1}"
-                )
-
+                duplicate = f"Possible Duplicate of Bug {j + 1}"
                 break
 
-        results.append(
-            duplicate
-        )
+        results.append(duplicate)
 
     return results
+
+
+# ROW COLORING
+
 def color_severity_row(row):
 
-    # Duplicate gets first priority for purple color
-    if "Possible Duplicate" in str(
-        row["Duplicate Status"]
-    ):
+    if "Possible Duplicate" in str(row["Duplicate Status"]):
 
         color = (
             "background-color: #E8D5F2; "
-            "color: #6A1B9A; "
-            "font-weight: 600;"
+            "color: #6A1B9A; font-weight: 600;"
         )
 
     elif row["Severity"] == "Critical":
 
         color = (
             "background-color: #FFD6D6; "
-            "color: #B71C1C; "
-            "font-weight: 600;"
+            "color: #B71C1C; font-weight: 600;"
         )
 
     elif row["Severity"] == "High":
 
         color = (
             "background-color: #FFE8B3; "
-            "color: #9A5700; "
-            "font-weight: 600;"
+            "color: #9A5700; font-weight: 600;"
         )
 
     elif row["Severity"] == "Medium":
 
         color = (
             "background-color: #D6ECFF; "
-            "color: #0D47A1; "
-            "font-weight: 600;"
+            "color: #0D47A1; font-weight: 600;"
         )
 
     elif row["Severity"] == "Low":
 
         color = (
             "background-color: #D9F5DF; "
-            "color: #1B5E20; "
-            "font-weight: 600;"
+            "color: #1B5E20; font-weight: 600;"
         )
 
     else:
-
         color = ""
 
     return [color] * len(row)
+
+
+# FILE UPLOAD
+
 uploaded_file = st.file_uploader(
     "📂 Upload Bug Reports CSV",
     type=["csv"]
 )
+
 if uploaded_file is not None:
 
     try:
 
-        # Read CSV
-        df = pd.read_csv(
-            uploaded_file
-        )
+        df = pd.read_csv(uploaded_file)
 
-        # Create Bug ID
-        df["bug_id"] = range(
-            1,
-            len(df) + 1
-        )
+        df["bug_id"] = range(1, len(df) + 1)
+
         uploaded_table = df[["bug_id", "description"]].copy()
 
         st.dataframe(
@@ -476,6 +413,9 @@ if uploaded_file is not None:
                 )
             }
         )
+
+        # FIND DESCRIPTION COLUMN
+
         description_column = None
 
         for column in df.columns:
@@ -488,8 +428,8 @@ if uploaded_file is not None:
             ]:
 
                 description_column = column
-
                 break
+
         if description_column:
 
             if st.button(
@@ -497,39 +437,30 @@ if uploaded_file is not None:
                 use_container_width=False
             ):
 
-                df["Severity"] = (
-                    df[description_column]
-                    .apply(
-                        classify_severity
-                    )
+                # ANALYZE BUG REPORTS
+
+                df["Severity"] = df[description_column].apply(
+                    classify_severity
                 )
 
-                df["Affected Area"] = (
-                    df[description_column]
-                    .apply(
-                        classify_area
-                    )
+                df["Affected Area"] = df[description_column].apply(
+                    classify_area
                 )
 
-                df["Duplicate Status"] = (
-                    detect_duplicates(
-                        df[
-                            description_column
-                        ].tolist()
-                    )
+                df["Duplicate Status"] = detect_duplicates(
+                    df[description_column].tolist()
                 )
 
-                df[
-                    "Clarification Suggestion"
-                ] = (
-                    df[description_column]
-                    .apply(
-                        clarification
-                    )
+                df["Clarification Suggestion"] = (
+                    df[description_column].apply(clarification)
                 )
+
                 st.success(
                     "✅ Bug reports analyzed successfully!"
                 )
+
+                # SUMMARY
+
                 total_bugs = len(df)
 
                 critical_bugs = df["Severity"].eq("Critical").sum()
@@ -537,72 +468,41 @@ if uploaded_file is not None:
                 medium_bugs = df["Severity"].eq("Medium").sum()
                 low_bugs = df["Severity"].eq("Low").sum()
 
-                duplicates = (
-                    df["Duplicate Status"]
-                    .str.contains("Possible Duplicate", na=False)
-                    .sum()
-                )
+                duplicates = df["Duplicate Status"].str.contains(
+                    "Possible Duplicate",
+                    na=False
+                ).sum()
 
                 st.subheader("📌 Analysis Summary")
 
                 col1, col2, col3, col4, col5, col6 = st.columns(6)
-                with col1:
-                    st.markdown(
-                        f'<div class="summary-card total-card">'
-                        f'<p class="card-title">🐞 Total</p>'
-                        f'<p class="card-value">{total_bugs}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
 
-                with col2:
-                    st.markdown(
-                        f'<div class="summary-card critical-card">'
-                        f'<p class="card-title">🚨 Critical</p>'
-                        f'<p class="card-value">{critical_bugs}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                cards = [
+                    (col1, "🐞 Total", total_bugs, "total-card"),
+                    (col2, "🚨 Critical", critical_bugs, "critical-card"),
+                    (col3, "⚠️ High", high_bugs, "high-card"),
+                    (col4, "🔵 Medium", medium_bugs, "medium-card"),
+                    (col5, "🟢 Low", low_bugs, "low-card"),
+                    (col6, "📑 Duplicates", duplicates, "duplicate-card")
+                ]
 
-                with col3:
-                    st.markdown(
-                        f'<div class="summary-card high-card">'
-                        f'<p class="card-title">⚠️ High</p>'
-                        f'<p class="card-value">{high_bugs}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                for col, title, value, css_class in cards:
 
-                with col4:
-                    st.markdown(
-                        f'<div class="summary-card medium-card">'
-                        f'<p class="card-title">🔵 Medium</p>'
-                        f'<p class="card-value">{medium_bugs}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                    with col:
 
-                with col5:
-                    st.markdown(
-                        f'<div class="summary-card low-card">'
-                        f'<p class="card-title">🟢 Low</p>'
-                        f'<p class="card-value">{low_bugs}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                        st.markdown(
+                            f"""
+                            <div class="summary-card {css_class}">
+                                <p class="card-title">{title}</p>
+                                <p class="card-value">{value}</p>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
 
-                with col6:
-                    st.markdown(
-                        f'<div class="summary-card duplicate-card">'
-                        f'<p class="card-title">📑 Duplicates</p>'
-                        f'<p class="card-value">{duplicates}</p>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
+                # RESULTS TABLE
 
-                st.subheader(
-                    "📋 Bug Analysis Results"
-                )
+                st.subheader("📋 Bug Analysis Results")
 
                 display_columns = [
                     "bug_id",
@@ -613,40 +513,37 @@ if uploaded_file is not None:
                     "Clarification Suggestion"
                 ]
 
-
-                # Apply row colors
                 styled_table = (
                     df[display_columns]
                     .style
-                    .apply(
-                        color_severity_row,
-                        axis=1
-                    )
+                    .apply(color_severity_row, axis=1)
                 )
 
-
-                # Display large table
                 st.dataframe(
-                styled_table,
-                use_container_width=True,
-                hide_index=True,
-                height=(len(df) + 1) * 36
-            )
+                    styled_table,
+                    use_container_width=True,
+                    hide_index=True,
+                    height=(len(df) + 1) * 36
+                )
+
+                # SEVERITY PIE CHART
 
                 severity_count = (
                     df["Severity"]
                     .value_counts()
-                    .reset_index()
+                    .reindex(
+                        ["Critical", "High", "Medium", "Low"],
+                        fill_value=0
+                    )
+                    .rename_axis("Severity")
+                    .reset_index(name="Count")
                 )
 
-                severity_count.columns = [
-                    "Severity",
-                    "Count"
+                severity_count = severity_count[
+                    severity_count["Count"] > 0
                 ]
 
-                st.subheader(
-                    "📊 Bug Severity Distribution"
-                )
+                st.subheader("📊 Bug Severity Distribution")
 
                 fig = px.pie(
                     severity_count,
@@ -665,14 +562,15 @@ if uploaded_file is not None:
                 fig.update_traces(
                     textposition="inside",
                     texttemplate="<b>%{label}</b><br>%{value} Bugs<br>%{percent}",
-                    hovertemplate="<b>%{label}</b><br>Bugs: %{value}<br>Percentage: %{percent}<extra></extra>",
-                    marker=dict(
-                        line=dict(
-                            color="white",
-                            width=3
-                        )
+                    hovertemplate=(
+                        "<b>%{label}</b><br>"
+                        "Bugs: %{value}<br>"
+                        "Percentage: %{percent}<extra></extra>"
                     ),
-                    pull=[0.03, 0.03, 0.03, 0.03]
+                    marker=dict(
+                        line=dict(color="white", width=3)
+                    ),
+                    pull=[0.03] * len(severity_count)
                 )
 
                 fig.update_layout(
@@ -685,24 +583,11 @@ if uploaded_file is not None:
                             "color": "#1F4E79"
                         }
                     },
-
                     height=520,
-
-                    margin=dict(
-                        l=20,
-                        r=20,
-                        t=80,
-                        b=20
-                    ),
-
+                    margin=dict(l=20, r=20, t=80, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-
-                    font=dict(
-                        color="#1F2937",
-                        size=13
-                    ),
-
+                    font=dict(color="#1F2937", size=13),
                     legend=dict(
                         orientation="h",
                         yanchor="bottom",
@@ -712,7 +597,6 @@ if uploaded_file is not None:
                         title=None,
                         font=dict(size=13)
                     ),
-
                     annotations=[
                         dict(
                             text=f"<b>{len(df)}</b><br>Total Bugs",
@@ -736,6 +620,8 @@ if uploaded_file is not None:
                     }
                 )
 
+                # AFFECTED AREA CHART
+
                 area_count = (
                     df["Affected Area"]
                     .value_counts()
@@ -747,17 +633,13 @@ if uploaded_file is not None:
                     "Count"
                 ]
 
-                st.subheader(
-                    "📈 Bugs by Affected Area"
-                )
+                st.subheader("📈 Bugs by Affected Area")
 
                 area_fig = px.bar(
                     area_count,
                     x="Affected Area",
                     y="Count",
-                    title=(
-                        "Affected Area Distribution"
-                    ),
+                    title="Affected Area Distribution",
                     text="Count",
                     color="Affected Area"
                 )
@@ -767,15 +649,9 @@ if uploaded_file is not None:
                 )
 
                 area_fig.update_layout(
-                    paper_bgcolor=(
-                        "rgba(0,0,0,0)"
-                    ),
-                    plot_bgcolor=(
-                        "rgba(0,0,0,0)"
-                    ),
-                    font=dict(
-                        color="#1F2937"
-                    ),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    plot_bgcolor="rgba(0,0,0,0)",
+                    font=dict(color="#1F2937"),
                     showlegend=False
                 )
 
@@ -784,35 +660,23 @@ if uploaded_file is not None:
                     use_container_width=True
                 )
 
-                st.subheader(
-                    "📥 Download Analysis"
-                )
+                # DOWNLOAD RESULTS
 
-                csv = (
-                    df.to_csv(
-                        index=False
-                    )
-                    .encode(
-                        "utf-8"
-                    )
-                )
+                st.subheader("📥 Download Analysis")
+
+                csv = df.to_csv(index=False).encode("utf-8")
 
                 st.download_button(
-                    label=(
-                        "⬇️ Download Analysis Results"
-                    ),
+                    label="⬇️ Download Analysis Results",
                     data=csv,
-                    file_name=(
-                        "bug_triage_results.csv"
-                    ),
+                    file_name="bug_triage_results.csv",
                     mime="text/csv"
                 )
 
         else:
 
             st.error(
-                "❌ CSV file must contain "
-                "a 'Description' column."
+                "❌ CSV file must contain a 'Description' column."
             )
 
     except Exception as e:
@@ -820,6 +684,7 @@ if uploaded_file is not None:
         st.error(
             f"Unable to process CSV file: {e}"
         )
+
 else:
 
     st.info(
