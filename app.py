@@ -1,3 +1,4 @@
+```python
 import streamlit as st
 import pandas as pd
 from difflib import SequenceMatcher
@@ -10,189 +11,205 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-st.markdown(
-    """
-    <style>
+st.markdown("""
+<style>
 
-    /* MAIN BACKGROUND */
+/* MAIN BACKGROUND */
 
-    .stApp {
-        background: linear-gradient(
-            135deg,
-            #F8FBFF 0%,
-            #EAF4FF 100%
-        );
-    }
+.stApp {
+    background: linear-gradient(135deg, #F8FBFF 0%, #EAF4FF 100%) !important;
+    color: #243447 !important;
+}
 
-    .block-container {
-        max-width: 1450px;
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-    }
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"] {
+    background: #F8FBFF !important;
+}
 
-    /* HEADINGS */
+.block-container {
+    max-width: 1450px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
 
-    h1 {
-        color: #163A63 !important;
-        font-weight: 750 !important;
-    }
+/* HEADINGS */
 
-    h2, h3 {
-        color: #1F4E79 !important;
-        font-weight: 650 !important;
-    }
+h1 {
+    color: #163A63 !important;
+    font-weight: 750 !important;
+}
 
-    p, label {
-        color: #334155 !important;
-    }
+h2, h3 {
+    color: #1F4E79 !important;
+    font-weight: 650 !important;
+}
 
-    /* FILE UPLOADER */
+p, label {
+    color: #334155 !important;
+}
 
-    [data-testid="stFileUploader"] {
-        background: white !important;
-        border: 1px solid #D5E4F5;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
+/* FILE UPLOADER - WHITE BACKGROUND */
 
-    [data-testid="stFileUploaderDropzone"] {
-        background: #F5F9FF !important;
-        border: 2px dashed #8BB8E8 !important;
-        border-radius: 12px !important;
-    }
+[data-testid="stFileUploader"] {
+    background: #FFFFFF !important;
+    border: 1px solid #D5E4F5 !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
 
-    [data-testid="stFileUploaderDropzone"] * {
-        color: #334155 !important;
-    }
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploaderDropzone"] {
+    background: #F5F9FF !important;
+    border: 2px dashed #8BB8E8 !important;
+    border-radius: 12px !important;
+}
 
-    [data-testid="stFileUploaderDropzone"] button {
-        background: #7B2CBF !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-    }
+/* UPLOADER TEXT */
 
-    /* BUTTONS */
+[data-testid="stFileUploader"] * {
+    color: #334155 !important;
+}
 
-    .stButton > button {
-        background: #7B2CBF !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 9px !important;
-        padding: 10px 25px !important;
-        font-weight: 600 !important;
-    }
+/* BROWSE FILES BUTTON */
 
-    /* BUTTON TEXT WHITE */
+[data-testid="stFileUploader"] button {
+    background: #7B2CBF !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
 
-    .stButton > button p {
-        color: white !important;
-    }
+[data-testid="stFileUploader"] button * {
+    color: #FFFFFF !important;
+}
 
-    .stButton > button span {
-        color: white !important;
-    }
+/* UPLOADED CSV FILE DISPLAY */
 
-    .stButton > button div {
-        color: white !important;
-    }
+[data-testid="stFileUploaderFile"],
+[data-testid="stFileUploaderFile"] > div,
+[data-testid="stFileUploaderFileName"],
+[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] {
+    background: #FFFFFF !important;
+    color: #243447 !important;
+}
 
-    .stButton > button:hover {
-        background: #5A189A !important;
-        color: white !important;
-    }
+[data-testid="stFileUploaderFile"] *,
+[data-testid="stFileUploaderFileName"] * {
+    color: #243447 !important;
+}
 
-    .stDownloadButton > button {
-        background: #7B2CBF !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 9px !important;
-        font-weight: 600 !important;
-    }
+/* BUTTONS */
 
-    .stDownloadButton > button p,
-    .stDownloadButton > button span {
-        color: white !important;
-    }
+.stButton > button {
+    background: #7B2CBF !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 9px !important;
+    padding: 10px 25px !important;
+    font-weight: 600 !important;
+}
 
-    .stDownloadButton > button:hover {
-        background: #5A189A !important;
-        color: white !important;
-    }
+.stButton > button p,
+.stButton > button span,
+.stButton > button div {
+    color: white !important;
+}
 
-    /* DATAFRAME */
+.stButton > button:hover {
+    background: #5A189A !important;
+    color: white !important;
+}
 
-    [data-testid="stDataFrame"] {
-        background: white !important;
-        border-radius: 12px;
-        border: 1px solid #DCE8F5;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+/* DOWNLOAD BUTTON */
 
-    [data-testid="stElementToolbar"] {
-        opacity: 1 !important;
-    }
+.stDownloadButton > button {
+    background: #7B2CBF !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+}
 
-    [data-testid="stAlert"] {
-        border-radius: 10px;
-    }
+.stDownloadButton > button * {
+    color: white !important;
+}
 
-    /* SUMMARY CARDS */
+.stDownloadButton > button:hover {
+    background: #5A189A !important;
+}
 
-    .summary-card {
-        padding: 14px 10px;
-        border-radius: 13px;
-        color: white !important;
-        min-height: 105px;
-        box-shadow: 0 5px 12px rgba(0,0,0,0.12);
-        margin-bottom: 10px;
-    }
+/* DATAFRAME */
 
-    .summary-card .card-title {
-        color: white !important;
-        font-size: 13px !important;
-        font-weight: 700 !important;
-        margin: 0 0 10px 0 !important;
-        white-space: nowrap;
-    }
+[data-testid="stDataFrame"] {
+    background: white !important;
+    border-radius: 12px;
+    border: 1px solid #DCE8F5;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 
-    .summary-card .card-value {
-        color: white !important;
-        font-size: 30px !important;
-        font-weight: 800 !important;
-        margin: 0 !important;
-    }
+[data-testid="stElementToolbar"] {
+    opacity: 1 !important;
+}
 
-    .total-card {
-        background: linear-gradient(135deg, #2196F3, #00BCD4) !important;
-    }
+[data-testid="stAlert"] {
+    border-radius: 10px;
+}
 
-    .critical-card {
-        background: linear-gradient(135deg, #E53935, #FF5252) !important;
-    }
+/* SUMMARY CARDS */
 
-    .high-card {
-        background: linear-gradient(135deg, #FB8C00, #FFCA28) !important;
-    }
+.summary-card {
+    padding: 14px 10px;
+    border-radius: 13px;
+    color: white !important;
+    min-height: 105px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+    margin-bottom: 10px;
+}
 
-    .medium-card {
-        background: linear-gradient(135deg, #1565C0, #42A5F5) !important;
-    }
+.summary-card .card-title {
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin: 0 0 10px 0 !important;
+    white-space: nowrap;
+}
 
-    .low-card {
-        background: linear-gradient(135deg, #2E7D32, #66BB6A) !important;
-    }
+.summary-card .card-value {
+    color: white !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+}
 
-    .duplicate-card {
-        background: linear-gradient(135deg, #7B1FA2, #AB47BC) !important;
-    }
+.total-card {
+    background: linear-gradient(135deg, #2196F3, #00BCD4) !important;
+}
 
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+.critical-card {
+    background: linear-gradient(135deg, #E53935, #FF5252) !important;
+}
+
+.high-card {
+    background: linear-gradient(135deg, #FB8C00, #FFCA28) !important;
+}
+
+.medium-card {
+    background: linear-gradient(135deg, #1565C0, #42A5F5) !important;
+}
+
+.low-card {
+    background: linear-gradient(135deg, #2E7D32, #66BB6A) !important;
+}
+
+.duplicate-card {
+    background: linear-gradient(135deg, #7B1FA2, #AB47BC) !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 
 st.title("🐞 Bug Report Triage Agent")
 
@@ -388,31 +405,12 @@ uploaded_file = st.file_uploader(
     type=["csv"]
 )
 
+
 if uploaded_file is not None:
 
     try:
 
         df = pd.read_csv(uploaded_file)
-
-        df["bug_id"] = range(1, len(df) + 1)
-
-        uploaded_table = df[["bug_id", "description"]].copy()
-
-        st.dataframe(
-            uploaded_table,
-            hide_index=True,
-            height=500,
-            column_config={
-                "bug_id": st.column_config.NumberColumn(
-                    "Bug ID",
-                    width="small"
-                ),
-                "description": st.column_config.TextColumn(
-                    "Description",
-                    width="large"
-                )
-            }
-        )
 
         # FIND DESCRIPTION COLUMN
 
@@ -430,7 +428,37 @@ if uploaded_file is not None:
                 description_column = column
                 break
 
-        if description_column:
+        if description_column is None:
+
+            st.error(
+                "❌ CSV file must contain a 'Description' column."
+            )
+
+        elif df.empty:
+
+            st.warning("Uploaded CSV file is empty.")
+
+        else:
+
+            df["bug_id"] = range(1, len(df) + 1)
+
+            uploaded_table = df[
+                ["bug_id", description_column]
+            ].copy()
+
+            uploaded_table.columns = [
+                "Bug ID",
+                "Description"
+            ]
+
+            st.subheader("📄 Uploaded Bug Reports")
+
+            st.dataframe(
+                uploaded_table,
+                hide_index=True,
+                use_container_width=True,
+                height=500
+            )
 
             if st.button(
                 "🔍 Analyze Bug Reports",
@@ -448,7 +476,7 @@ if uploaded_file is not None:
                 )
 
                 df["Duplicate Status"] = detect_duplicates(
-                    df[description_column].tolist()
+                    df[description_column].fillna("").tolist()
                 )
 
                 df["Clarification Suggestion"] = (
@@ -673,12 +701,6 @@ if uploaded_file is not None:
                     mime="text/csv"
                 )
 
-        else:
-
-            st.error(
-                "❌ CSV file must contain a 'Description' column."
-            )
-
     except Exception as e:
 
         st.error(
@@ -690,3 +712,17 @@ else:
     st.info(
         "👆 Upload a CSV file to start bug analysis."
     )
+```
+
+**Important – GitHub deployment kosam:** `.streamlit/config.toml` file kuda create cheyyi. Andulo ee settings pettu:
+
+```toml
+[theme]
+base = "light"
+primaryColor = "#7B2CBF"
+backgroundColor = "#F8FBFF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#243447"
+```
+
+Ee configuration valla Streamlit deployment default dark theme use cheyyakunda light theme use chestundi.
